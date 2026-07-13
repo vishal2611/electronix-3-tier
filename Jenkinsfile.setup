@@ -24,7 +24,7 @@ pipeline {
         stage('Provision Docker Engine') {
             steps {
                 sh '''
-                    if  command -v docker > /dev/null 2>&1; then
+                    if ! command -v docker > /dev/null 2>&1; then
                         sudo apt-get update -y
                         sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
                         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -37,12 +37,12 @@ pipeline {
                     echo "Docker provisioned successfully ✅"
                 '''
             }
-        }  
+        } 
         stage('Provision MySQL Client') {
             steps {
                 sh '''
                     if ! command -v mysql > /dev/null 2>&1; then
-                        sudo apt-get update -y
+                        
                         sudo apt-get install -y mysql-client
                     fi
 
