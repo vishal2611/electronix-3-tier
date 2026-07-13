@@ -3,7 +3,7 @@ pipeline{
 
     stages{
         stage ("Tools Configure"){
-            step {
+            steps{
                 echo "Tools Installation Pipeline"
             }
         }
