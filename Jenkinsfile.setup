@@ -1,10 +1,12 @@
-pipeline{
-    agent { label'electronix'}
+pipeline {
+    agent {
+        label 'electronix'
+    }
 
-    stages{
-        stage ("Tools Configure"){
-            steps{
-                echo "Tools Installation Pipeline"
+    stages {
+        stage('Tools Configure') {
+            steps {
+                echo 'Tools Installation Pipeline'
             }
         }
     }
