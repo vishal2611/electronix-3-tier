@@ -11,15 +11,23 @@ pipeline {
                 '''
             }
         }
+        stage('Smoke Test') {
+            steps {
+                sh '''
+                    python3 scripts/smoke_test.py
+                '''
+            }
+        }
     }
+    
 
     post {
         success {
-            echo 'Database creation Successful ✅'
+            echo 'Smoke Test Successful ✅'
         }
 
         failure {
-            echo 'Database Creation Failed ❌'
+            echo 'Smoke Test Failed ❌'
         }
     }
 }
