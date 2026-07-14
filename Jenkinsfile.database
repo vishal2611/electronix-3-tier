@@ -19,6 +19,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            echo 'Database Successful ✅'
+        }
+
+        failure {
+            echo 'Database Failed ❌'
+        }
+    }
     
 
     post {
