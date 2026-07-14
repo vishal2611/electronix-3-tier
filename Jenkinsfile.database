@@ -10,34 +10,34 @@ pipeline {
                     python3 scripts/create_db.py
                 '''
             }
+
+            post {
+                success {
+                    echo 'Database Successful ✅'
+                }
+
+                failure {
+                    echo 'Database Failed ❌'
+                }
+            }
         }
+
         stage('Smoke Test') {
             steps {
                 sh '''
                     python3 scripts/smoke_test.py
                 '''
             }
-        }
-    }
 
-    post {
-        success {
-            echo 'Database Successful ✅'
-        }
+            post {
+                success {
+                    echo 'Smoke Test Successful ✅'
+                }
 
-        failure {
-            echo 'Database Failed ❌'
-        }
-    }
-    
-
-    post {
-        success {
-            echo 'Smoke Test Successful ✅'
-        }
-
-        failure {
-            echo 'Smoke Test Failed ❌'
+                failure {
+                    echo 'Smoke Test Failed ❌'
+                }
+            }
         }
     }
 }
