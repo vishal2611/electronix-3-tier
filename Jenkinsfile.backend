@@ -44,6 +44,14 @@ pipeline {
                         '''
                     }
                 }
+                stage("Deploy to Production") {
+                    steps {
+                        sh '''
+                            ssh -o StrictHostKeyChecking=no ubuntu@${PRODUCTION_IP}
+                            echo "Connection Success ✅"
+                        '''
+                    }
+                }
             }
         }
     }
