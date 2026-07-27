@@ -48,8 +48,7 @@ pipeline {
                     steps {
                         sshagent(['prod-server-ssh-key']){
                             sh '''
-                            ssh -o StrictHostKeyChecking=no ubuntu@${PRODUCTION_IP} 
-                            "
+                            ssh -o StrictHostKeyChecking=no ubuntu@${PRODUCTION_IP} "
                             aws ecr get-login-password --region ${AWS_REGION} | sudo docker login --username AWS --password-stdin ${ECR_REPO}
                             sudo docker pull ${ECR_REPO}:latest &&
                             sudo docker stop electronix-backend || true &&
